@@ -19,14 +19,26 @@ jobs:
         java-version: '21'
         distribution: 'temurin'
         
-    - name: Setup Gradle
-      uses: gradle/actions/setup-gradle@v3
+    - name: Make gradlew executable
+      run: chmod +x gradlew
       
-    - name: Build
-      run: gradle build --no-daemon
+    - name: Build with Gradle
+      run: ./gradlew build --info --stacktrace
       
-    - name: Upload
+    - name: List build outputs
+      run: ls -la build/libs/
+      
+    - name: Upload artifacts
       uses: actions/upload-artifact@v4
+      if: success()
       with:
         name: milkytools
         path: build/libs/*.jar
+        retention-days: 30
+        
+    - name: Upload logs
+      uses: actions/upload-artifact@v4
+      if:failure()
+      with:
+        name: build-logs
+        path: build/log/
