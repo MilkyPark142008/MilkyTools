@@ -3,8 +3,11 @@ plugins {
     id 'maven-publish'
 }
 
-version = project.mod_version
-group = project.maven_group
+base {
+    group = project.maven_group
+    archivesName = project.archives_base_name + '-' + project.minecraft_version
+    version = project.mod_version
+}
 
 repositories {
     maven { url = 'https://maven.fabricmc.net/' }
@@ -24,6 +27,10 @@ dependencies {
     modRuntimeOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
 }
 
+loom {
+    // accessWidenerPath = file("src/main/resources/milkytools.accesswidener")
+}
+
 processResources {
     inputs.property "version", project.version
 
@@ -33,25 +40,30 @@ processResources {
 }
 
 tasks.withType(JavaCompile).configureEach {
+    it.options.encoding = "UTF-8"
     it.options.release = 21
+}
+
+tasks.withType(AbstractArchiveTask).configureEach {
+    preserveFileTimestamps = true
 }
 
 java {
     sourceCompatibility = JavaVersion.VERSION_21
     targetCompatibility = JavaVersion.VERSION_21
-    
     withSourcesJar()
 }
 
 jar {
     from("LICENSE") {
-        rename { "${it}_${project.base.archivesName.get()}" }
+        rename { "${it}_${base.archivesName}" }
     }
 }
 
 publishing {
     publications {
         mavenJava(MavenPublication) {
+            artifactId = base.archivesName.get()
             from components.java
         }
     }
