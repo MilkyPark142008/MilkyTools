@@ -1,11 +1,9 @@
 {
-  "required": true,
+  "required": false,
   "minVersion": "0.8",
   "package": "com.milkytools.mixin",
   "compatibilityLevel": "JAVA_21",
-  "mixins": [
-    "AbstractBlockMixin"
-  ],
+  "mixins": [],
   "client": [],
   "server": [],
   "injectors": {

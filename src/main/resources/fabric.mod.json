@@ -8,20 +8,16 @@
     "User"
   ],
   "contact": {
-    "homepage": "https://github.com/yourusername/milkytools",
-    "sources": "https://github.com/yourusername/milkytools"
+    "homepage": "https://github.com/MilkyPark142008/MilkyTools",
+    "sources": "https://github.com/MilkyPark142008/MilkyTools"
   },
   "license": "MIT",
-  "icon": "assets/milkytools/icon.png",
   "environment": "client",
   "entrypoints": {
     "client": [
       "com.milkytools.MilkyTools"
     ]
   },
-  "mixins": [
-    "milkytools.mixins.json"
-  ],
   "depends": {
     "fabricloader": ">=0.18.4",
     "minecraft": ">=1.21.9 <=1.21.10",
