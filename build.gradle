@@ -21,8 +21,8 @@ dependencies {
     modImplementation "net.fabricmc:fabric-loader:${project.loader_version}"
     implementation "com.google.code.findbugs:jsr305:3.0.2"
 
-    // Fabric API - temporarily commented out for 1.21.10 compatibility
-    // modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
+    // Fabric API required by MilkyTools (ClientTickEvents, HudRenderCallback)
+    modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_version}"
     
     // Mod Menu for GUI (runtime only)
     modRuntimeOnly "com.terraformersmc:modmenu:${project.modmenu_version}"
